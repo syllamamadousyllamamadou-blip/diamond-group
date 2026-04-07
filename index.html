@@ -56,6 +56,14 @@
     </div>
 
     <!-- =========================================
+         BOUTON FLOTTANT (Contact)
+    ========================================= -->
+    <a href="#contact" class="fixed bottom-6 right-6 z-[90] bg-purple-600/90 backdrop-blur-md text-white p-4 rounded-full shadow-[0_4px_20px_rgba(147,51,234,0.4)] hover:bg-purple-500 hover:scale-110 transition-all flex items-center justify-center group opacity-0 transition-opacity duration-1000" id="floating-btn">
+        <i data-lucide="message-square" class="w-6 h-6"></i>
+        <span class="absolute right-full mr-4 bg-[#0a0a0a] text-white text-sm px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 pointer-events-none shadow-lg">Nous contacter</span>
+    </a>
+
+    <!-- =========================================
          MODAL VIDÉO YOUTUBE 
     ========================================= -->
     <div id="video-modal" class="fixed inset-0 z-[200] bg-[#050505]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-10 transition-all duration-500 modal-hidden">
@@ -68,19 +76,21 @@
     </div>
 
     <!-- =========================================
-         MODAL EXPERTISES (Détails)
+         MODAL EXPERTISES (Détails + Médias)
     ========================================= -->
     <div id="expertise-modal" class="fixed inset-0 z-[200] bg-[#050505]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-10 transition-all duration-500 modal-hidden">
         <button id="close-expertise-modal" class="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white hover:rotate-90 transition-all duration-300 z-50 bg-white/10 p-3 rounded-full backdrop-blur-md">
             <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
         </button>
         
-        <div class="w-full max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_0_80px_rgba(147,51,234,0.15)] relative transform scale-95 transition-transform duration-500 flex flex-col md:flex-row" id="expertise-container">
-            <!-- Image dynamique -->
-            <div class="md:w-1/2 h-64 md:h-auto relative bg-zinc-900">
-                <div class="absolute inset-0 bg-black/40 z-10"></div>
-                <img id="exp-modal-img" src="" class="w-full h-full object-cover" alt="Expertise Image">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent md:bg-gradient-to-r z-10"></div>
+        <div class="w-full max-w-5xl bg-[#0a0a0a] border border-white/10 rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_0_80px_rgba(147,51,234,0.15)] relative transform scale-95 transition-transform duration-500 flex flex-col md:flex-row" id="expertise-container">
+            
+            <!-- Conteneur Médias Dynamique (Vidéo, Slider, ou Image) -->
+            <div class="md:w-1/2 h-64 md:h-auto relative bg-zinc-900 overflow-hidden group">
+                <div id="exp-modal-media-content" class="absolute inset-0 w-full h-full z-0">
+                    <!-- Injecté par JavaScript -->
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent md:bg-gradient-to-r z-10 pointer-events-none"></div>
             </div>
             
             <!-- Contenu texte dynamique -->
@@ -91,7 +101,7 @@
                 <h3 id="exp-modal-title" class="text-3xl font-bold text-white mb-4">Titre Expertise</h3>
                 <p id="exp-modal-desc" class="text-zinc-400 font-light leading-relaxed mb-8">Description complète de l'expertise...</p>
                 <a href="#contact" onclick="closeExpertiseModal()" class="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white font-bold rounded-full hover:bg-purple-500 transition-all self-start shadow-[0_0_20px_rgba(147,51,234,0.3)]">
-                    Nous contacter pour ce service <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    Nous contacter <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
             </div>
         </div>
@@ -109,11 +119,12 @@
                     <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group Logo" class="relative z-10 h-7 md:h-9 object-contain">
                 </a>
 
-                <!-- Menu Desktop (Suppression des target="_blank" pour le smooth scroll local) -->
+                <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="#expertises" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Expertises</a>
                     <a href="#portfolio" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Portfolio</a>
                     <a href="#formation" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Académie</a>
+                    <a href="#contact" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Contact</a>
                 </div>
 
                 <!-- Menu Mobile Button -->
@@ -123,29 +134,27 @@
             </div>
 
             <!-- Menu Mobile Dropdown -->
-            <div id="mobile-menu" class="fixed inset-0 bg-[#050505] flex flex-col items-center justify-center space-y-8 transition-transform duration-500 ease-in-out -translate-y-full">
+            <div id="mobile-menu" class="fixed inset-0 bg-[#050505] flex flex-col items-center justify-center space-y-8 transition-transform duration-500 ease-in-out -translate-y-full z-40">
                 <a href="#expertises" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Expertises</a>
                 <a href="#portfolio" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Portfolio</a>
                 <a href="#formation" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Académie</a>
+                <a href="#contact" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Nous contacter</a>
             </div>
         </nav>
 
         <!-- Hero Section avec Slider Arrière-plan -->
         <section id="accueil" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#050505]">
-            <!-- Images d'arrière-plan -->
             <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden" id="hero-bg-container">
                 <img src="https://i.goopics.net/m9pkvy.jpg" class="hero-bg absolute inset-0 w-full h-full object-cover bg-slide bg-slide-visible" alt="BG 1">
                 <img src="https://i.goopics.net/skp5li.jpg" class="hero-bg absolute inset-0 w-full h-full object-cover bg-slide bg-slide-hidden" alt="BG 2">
                 <img src="https://i.goopics.net/48ovqo.jpg" class="hero-bg absolute inset-0 w-full h-full object-cover bg-slide bg-slide-hidden" alt="BG 3">
                 <img src="https://i.goopics.net/t69ezr.jpg" class="hero-bg absolute inset-0 w-full h-full object-cover bg-slide bg-slide-hidden" alt="BG 4">
                 
-                <!-- Filtres sombres -->
                 <div class="absolute inset-0 bg-black/60"></div>
                 <div class="absolute inset-0 bg-purple-900/20 mix-blend-overlay"></div>
                 <div class="absolute inset-0 bg-gradient-to-b from-[#050505]/30 via-[#050505]/60 to-[#050505]"></div>
             </div>
 
-            <!-- Halos lumineux -->
             <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-800/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
             <div class="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
 
@@ -176,7 +185,7 @@
             </div>
         </section>
 
-        <!-- Section Expertises -->
+        <!-- Section Expertises (AVEC IMAGES DE FOND PERMANENTES) -->
         <section id="expertises" class="py-32 relative">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 <div class="mb-20 text-center md:text-left">
@@ -185,103 +194,116 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                    <!-- Expertise 1 (Cliquable) -->
-                    <div onclick="openExpertiseModal('production')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 md:col-span-2 bg-[#0a0a0a]">
-                        <div class="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-colors z-0"></div>
-                        <img src="https://i.goopics.net/ugcykb.jpg" alt="Production" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-40 group-hover:scale-105 transition-transform duration-700">
+                    <!-- Expertise 1 (Vidéo) -->
+                    <div onclick="openExpertiseModal('production')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 md:col-span-2 bg-[#0a0a0a] shadow-lg">
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
+                        <img src="https://i.goopics.net/ugcykb.jpg" alt="Production" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
                         <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
                             <div class="flex justify-between items-start mb-12">
                                 <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
                                     <i data-lucide="video" class="w-6 h-6 text-purple-500"></i>
                                 </div>
                                 <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">En savoir plus</span>
+                                    <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Voir les vidéos</span>
                                     <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400"></i>
                                 </div>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Production Vidéo</h3>
-                                <p class="text-zinc-400 font-light leading-relaxed max-w-md">Réalisation audiovisuelle complète. Classification : Spots publicitaires, Films corporate B2B, Interviews, Clips musicaux, et Documentaires longs formats.</p>
+                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Réalisation audiovisuelle complète. Spots publicitaires, Films corporate B2B, Interviews, Clips et Documentaires.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expertise 2 (Cliquable) -->
-                    <div onclick="openExpertiseModal('evenementiel')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a]">
+                    <!-- Expertise 2 (Événementiel) -->
+                    <div onclick="openExpertiseModal('evenementiel')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
+                        <img src="https://i.goopics.net/skp5li.jpg" alt="Evenementiel" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
                         <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
                             <div class="flex justify-between items-start mb-12">
                                 <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
                                     <i data-lucide="play" class="w-6 h-6 text-purple-500"></i>
                                 </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-600 group-hover:text-purple-400 transition-colors"></i>
+                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-400 group-hover:text-purple-400 transition-colors"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Événementiel</h3>
-                                <p class="text-zinc-400 font-light leading-relaxed max-w-md">Captation vidéo et photo multicaméras. Couverture de conférences, concerts, galas et cérémonies privées.</p>
+                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Captation vidéo et couverture photo pour conférences, concerts, galas et cérémonies.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expertise 3 (Cliquable) -->
-                    <div onclick="openExpertiseModal('photo')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a]">
+                    <!-- Expertise 3 (Photographie) -->
+                    <div onclick="openExpertiseModal('photo')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
+                        <img src="https://i.goopics.net/m9pkvy.jpg" alt="Photo" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
                         <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
                             <div class="flex justify-between items-start mb-12">
                                 <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
                                     <i data-lucide="camera" class="w-6 h-6 text-purple-500"></i>
                                 </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-600 group-hover:text-purple-400 transition-colors"></i>
+                                <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Galerie</span>
+                                    <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400"></i>
+                                </div>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Photographie</h3>
-                                <p class="text-zinc-400 font-light leading-relaxed max-w-md">Shooting professionnel. Classification : Photographie de produits (packshot), Portraits corporate, Mode, et Reportages photo sur site.</p>
+                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Shooting professionnel. Packshot, Portraits corporate, Mode et Reportages sur site.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expertise 4 (Cliquable) -->
-                    <div onclick="openExpertiseModal('marketing')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a]">
+                    <!-- Expertise 4 (Marketing) -->
+                    <div onclick="openExpertiseModal('marketing')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
+                        <img src="https://i.goopics.net/48ovqo.jpg" alt="Marketing" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
                         <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
                             <div class="flex justify-between items-start mb-12">
                                 <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
                                     <i data-lucide="monitor-smartphone" class="w-6 h-6 text-purple-500"></i>
                                 </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-600 group-hover:text-purple-400 transition-colors"></i>
+                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-400 group-hover:text-purple-400 transition-colors"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Marketing Digital</h3>
-                                <p class="text-zinc-400 font-light leading-relaxed max-w-md">Stratégie de contenu visuel, gestion des réseaux sociaux et campagnes publicitaires ciblées (Ads).</p>
+                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Stratégie de contenu, gestion des réseaux sociaux (CM) et campagnes publicitaires (Ads).</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expertise 5 (Cliquable) -->
-                    <div onclick="openExpertiseModal('publicite')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a]">
+                    <!-- Expertise 5 (Publicité) -->
+                    <div onclick="openExpertiseModal('publicite')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
+                        <img src="https://i.goopics.net/sfjdq2.jpg" alt="Publicite" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
                         <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
                             <div class="flex justify-between items-start mb-12">
                                 <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
                                     <i data-lucide="megaphone" class="w-6 h-6 text-purple-500"></i>
                                 </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-600 group-hover:text-purple-400 transition-colors"></i>
+                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-400 group-hover:text-purple-400 transition-colors"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Publicité Globale</h3>
-                                <p class="text-zinc-400 font-light leading-relaxed max-w-md">Création de campagnes 360°, affichage urbain, conception de supports imprimés, branding et identité visuelle.</p>
+                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Création de campagnes 360°, affichage urbain, supports imprimés et création de marque.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expertise 6 (Spéciale - Cliquable) -->
-                    <div id="formation" onclick="openExpertiseModal('academy')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-purple-500/20 md:col-span-3 bg-gradient-to-br from-purple-900/40 via-[#0a0a0a] to-black">
+                    <!-- Expertise 6 (Spéciale - Academy) -->
+                    <div id="formation" onclick="openExpertiseModal('academy')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-purple-500/30 md:col-span-3 bg-gradient-to-br from-purple-900/40 via-[#0a0a0a] to-black shadow-lg">
+                        <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors z-0"></div>
+                        <img src="https://i.goopics.net/t69ezr.jpg" alt="Academy" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:scale-105 transition-transform duration-700">
                         <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
                             <div class="flex justify-between items-start mb-12">
-                                <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
+                                <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-purple-500/20 transition-colors">
                                     <i data-lucide="graduation-cap" class="w-6 h-6 text-purple-400"></i>
                                 </div>
                                 <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400 transition-colors"></i>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Diamond Academy</h3>
-                                <p class="text-zinc-400 font-light leading-relaxed max-w-md">Formations pratiques intensives : Maîtrise du cadrage vidéo, montage professionnel (Premiere Pro), retouche photo avancée et masterclass marketing.</p>
+                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Formations pratiques intensives : Maîtrise du cadrage vidéo, montage professionnel, retouche photo avancée et marketing digital.</p>
                             </div>
                         </div>
                     </div>
@@ -299,7 +321,6 @@
             </div>
 
             <div class="flex flex-col lg:grid lg:grid-cols-3 gap-6 px-6 md:px-12 pb-10">
-                
                 <!-- Projet 1: Vidéo Youtube 1 -->
                 <div onclick="openVideoModal('7kVf939JGEU')" class="group relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 z-10 group-hover:opacity-70 transition-opacity duration-500"></div>
@@ -348,13 +369,29 @@
                         <h3 class="text-xl md:text-2xl font-bold text-white">Shooting Studio</h3>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <!-- Footer -->
         <footer id="contact" class="bg-[#050505] pt-32 pb-12">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
+                
+                <!-- Nouveau formulaire de contact simplifié -->
+                <div class="mb-24 bg-[#0a0a0a] border border-white/5 rounded-[2rem] p-8 md:p-12 flex flex-col lg:flex-row justify-between items-center gap-10 shadow-xl">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <h2 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">Prêt à créer ?</h2>
+                        <p class="text-lg text-zinc-400">Laissez-nous votre email, nous vous recontacterons très rapidement pour donner vie à vos ambitions visuelles.</p>
+                    </div>
+                    <div class="lg:w-1/2 w-full">
+                        <form onsubmit="event.preventDefault(); alert('Merci ! Votre demande a été envoyée avec succès. Nous vous contacterons très vite.'); this.reset();" class="flex flex-col sm:flex-row gap-3">
+                            <input type="email" placeholder="Votre adresse email" required class="w-full px-6 py-4 rounded-full bg-[#050505] border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition-colors shadow-inner">
+                            <button type="submit" class="px-8 py-4 bg-purple-600 text-white font-bold rounded-full hover:bg-purple-500 transition-all shadow-[0_0_20px_rgba(147,51,234,0.3)] shrink-0 flex items-center justify-center gap-2">
+                                Envoyer <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-t border-white/5 pt-16">
                     <div class="lg:col-span-1">
                         <div class="inline-block relative mb-8 bg-white px-6 py-4 rounded-2xl shadow-lg">
@@ -428,7 +465,8 @@
             document.getElementById('splash-screen').style.pointerEvents = 'none';
             document.getElementById('main-content').classList.remove('opacity-0');
             document.getElementById('main-content').classList.add('opacity-100');
-            document.getElementById('body').classList.remove('overflow-hidden'); // Activer le scroll
+            document.getElementById('body').classList.remove('overflow-hidden');
+            document.getElementById('floating-btn').classList.remove('opacity-0'); // Afficher le bouton flottant
         }, 2200);
 
         // 2. Gestion de la Navbar au Scroll
@@ -484,7 +522,7 @@
             heroBgs[currentBg].classList.add('bg-slide-visible');
         }, 5000);
 
-        // 5. Galerie Photo Slider
+        // 5. Galerie Photos pour le site global
         const galleryImages = [
             "https://i.goopics.net/m9pkvy.jpg", "https://i.goopics.net/skp5li.jpg",
             "https://i.goopics.net/48ovqo.jpg", "https://i.goopics.net/t69ezr.jpg",
@@ -498,18 +536,20 @@
         const dotsContainer = document.getElementById('gallery-dots');
         const counter = document.getElementById('gallery-counter');
 
-        galleryImages.forEach((src, idx) => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.className = `absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
-            img.id = `gallery-img-${idx}`;
-            container.appendChild(img);
+        if(container && dotsContainer && counter) {
+            galleryImages.forEach((src, idx) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = `absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
+                img.id = `gallery-img-${idx}`;
+                container.appendChild(img);
 
-            const dot = document.createElement('div');
-            dot.className = `h-1.5 rounded-full transition-all duration-300 ${idx === 0 ? 'w-6 bg-purple-500' : 'w-2 bg-white/30'}`;
-            dot.id = `gallery-dot-${idx}`;
-            dotsContainer.appendChild(dot);
-        });
+                const dot = document.createElement('div');
+                dot.className = `h-1.5 rounded-full transition-all duration-300 ${idx === 0 ? 'w-6 bg-purple-500' : 'w-2 bg-white/30'}`;
+                dot.id = `gallery-dot-${idx}`;
+                dotsContainer.appendChild(dot);
+            });
+        }
 
         function updateGallery() {
             galleryImages.forEach((_, idx) => {
@@ -531,7 +571,7 @@
             updateGallery();
         };
 
-        // 6. Gestion du Modal Vidéo
+        // 6. Gestion du Modal Vidéo Global
         const videoModal = document.getElementById('video-modal');
         const iframe = document.getElementById('youtube-iframe');
         const videoContainer = document.getElementById('video-container');
@@ -552,48 +592,76 @@
             setTimeout(() => { iframe.src = ''; }, 500); 
         });
 
-        // 7. Gestion du Modal Expertises
+        // 7. Gestion du Modal Expertises (Désormais avec Média Intégré)
         const expertiseData = {
             'production': {
                 title: 'Production Vidéo',
                 icon: 'video',
-                image: 'https://i.goopics.net/ugcykb.jpg',
+                mediaHTML: `
+                    <div class="w-full h-full relative bg-black">
+                        <iframe id="exp-modal-video-iframe" class="w-full h-full object-cover relative z-0 transition-opacity duration-300" src="https://www.youtube.com/embed/7kVf939JGEU?autoplay=1&mute=1&controls=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <div class="absolute inset-0 pointer-events-none flex flex-col justify-end pb-6 z-20">
+                            <div class="flex justify-center gap-4">
+                                <button onclick="changeExpModalVideo(-1)" class="pointer-events-auto p-3 bg-black/60 rounded-full hover:bg-purple-600 text-white transition-all shadow-lg border border-white/20 hover:border-transparent hover:scale-110 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                </button>
+                                <button onclick="changeExpModalVideo(1)" class="pointer-events-auto p-3 bg-black/60 rounded-full hover:bg-purple-600 text-white transition-all shadow-lg border border-white/20 hover:border-transparent hover:scale-110 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `,
                 desc: "Notre studio de production prend en charge l'intégralité de la chaîne de création audiovisuelle. De l'écriture du scénario au montage final (étalonnage, sound design, effets spéciaux).<br><br><strong class='text-purple-400'>Notre catalogue comprend :</strong><br>• Spots publicitaires pour TV et web<br>• Films corporate et institutionnels B2B<br>• Interviews et témoignages<br>• Clips musicaux scénarisés<br>• Documentaires et reportages longs formats."
             },
             'evenementiel': {
                 title: 'Événementiel',
                 icon: 'play',
-                image: 'https://i.goopics.net/skp5li.jpg',
+                mediaHTML: `<iframe class="w-full h-full object-cover relative z-10" src="https://www.youtube.com/embed/-GtLUT-sWVI?autoplay=1&mute=1&controls=0&loop=1&playlist=-GtLUT-sWVI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`,
                 desc: "Nous figeons vos moments les plus importants avec un matériel de pointe. Notre équipe se déploie sur le terrain pour garantir une couverture exhaustive de vos événements.<br><br><strong class='text-purple-400'>Nos prestations :</strong><br>• Captation vidéo multicaméras (Live streaming possible)<br>• Reportage photo événementiel complet<br>• Couverture de conférences et séminaires<br>• Concerts, festivals et galas<br>• Cérémonies privées et remises de prix."
             },
             'photo': {
                 title: 'Photographie',
                 icon: 'camera',
-                image: 'https://i.goopics.net/m9pkvy.jpg',
+                mediaHTML: `
+                    <div class="w-full h-full relative group">
+                        <img id="exp-modal-slider-img" src="${galleryImages[0]}" class="w-full h-full object-cover transition-opacity duration-300 relative z-0">
+                        <div class="absolute inset-0 bg-black/20 z-10 pointer-events-none"></div>
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 z-20">
+                            <button onclick="changeExpModalPhoto(-1)" class="p-3 bg-black/60 rounded-full hover:bg-purple-600 text-white transition-all shadow-lg border border-white/20 hover:border-transparent hover:scale-110 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button onclick="changeExpModalPhoto(1)" class="p-3 bg-black/60 rounded-full hover:bg-purple-600 text-white transition-all shadow-lg border border-white/20 hover:border-transparent hover:scale-110 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                `,
                 desc: "L'image fixe est souvent le premier contact de votre client avec votre marque. Nous réalisons des shootings haute définition en studio ou en extérieur, avec un traitement et une retouche professionnels (colorimétrie, détourage).<br><br><strong class='text-purple-400'>Domaines d'intervention :</strong><br>• Photographie de produits (Packshot e-commerce)<br>• Portraits corporate et trombinoscopes<br>• Photographie de Mode et éditorial<br>• Reportages photo sur site (locaux, chantiers, etc.)."
             },
             'marketing': {
                 title: 'Marketing Digital',
                 icon: 'monitor-smartphone',
-                image: 'https://i.goopics.net/48ovqo.jpg',
+                mediaHTML: `<img src="https://i.goopics.net/48ovqo.jpg" class="w-full h-full object-cover relative z-10">`,
                 desc: "Avoir de belles images ne suffit pas, il faut qu'elles soient vues. Notre pôle digital élabore des stratégies sur-mesure pour propulser votre visibilité sur internet et générer des prospects.<br><br><strong class='text-purple-400'>Notre expertise web :</strong><br>• Stratégie de contenu visuel (Snack content)<br>• Gestion des réseaux sociaux (Community Management)<br>• Création et optimisation de campagnes publicitaires (Facebook Ads, Google Ads)<br>• Analyse des performances et reporting."
             },
             'publicite': {
                 title: 'Publicité Globale',
                 icon: 'megaphone',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop',
+                mediaHTML: `<img src="https://i.goopics.net/sfjdq2.jpg" class="w-full h-full object-cover relative z-10">`,
                 desc: "Déployez votre image de marque à travers des campagnes percutantes, en ligne et hors ligne. Nous assurons la cohérence de vos messages sur l'ensemble de vos canaux de diffusion.<br><br><strong class='text-purple-400'>Nos solutions 360° :</strong><br>• Création de campagnes de communication globales<br>• Conception pour l'affichage urbain (OOH)<br>• Design de supports imprimés (flyers, brochures)<br>• Création d'identité visuelle et Branding (logo, charte graphique)."
             },
             'academy': {
                 title: 'Diamond Academy',
                 icon: 'graduation-cap',
-                image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop',
+                mediaHTML: `<img src="https://i.goopics.net/t69ezr.jpg" class="w-full h-full object-cover relative z-10">`,
                 desc: "Transmettre notre savoir-faire est au cœur de notre mission. La Diamond Academy propose des sessions de formation immersives encadrées par nos professionnels en activité.<br><br><strong class='text-purple-400'>Nos programmes de formation :</strong><br>• Initiation et maîtrise du cadrage vidéo et de la lumière<br>• Montage professionnel sur Adobe Premiere Pro et DaVinci Resolve<br>• Retouche photo avancée (Photoshop & Lightroom)<br>• Masterclass en stratégie Marketing Digital."
             }
         };
 
         const expModal = document.getElementById('expertise-modal');
         const expContainer = document.getElementById('expertise-container');
+        const expMediaContent = document.getElementById('exp-modal-media-content');
 
         window.openExpertiseModal = (id) => {
             const data = expertiseData[id];
@@ -601,7 +669,8 @@
 
             document.getElementById('exp-modal-title').innerText = data.title;
             document.getElementById('exp-modal-desc').innerHTML = data.desc;
-            document.getElementById('exp-modal-img').src = data.image;
+            expMediaContent.innerHTML = data.mediaHTML; // Injecte la vidéo, le slider, ou l'image
+            
             document.getElementById('exp-modal-icon').setAttribute('data-lucide', data.icon);
             lucide.createIcons();
 
@@ -616,9 +685,47 @@
             expModal.classList.add('modal-hidden');
             expContainer.classList.remove('scale-100');
             expContainer.classList.add('scale-95');
+            // Détruire la vidéo pour couper le son
+            setTimeout(() => { expMediaContent.innerHTML = ''; }, 500);
         };
 
         document.getElementById('close-expertise-modal').addEventListener('click', closeExpertiseModal);
+
+        // Navigation Slider Spécifique au Modal "Photographie"
+        let currentExpModalPhotoIndex = 0;
+        window.changeExpModalPhoto = (dir) => {
+            currentExpModalPhotoIndex += dir;
+            if (currentExpModalPhotoIndex < 0) currentExpModalPhotoIndex = galleryImages.length - 1;
+            if (currentExpModalPhotoIndex >= galleryImages.length) currentExpModalPhotoIndex = 0;
+            
+            const imgEl = document.getElementById('exp-modal-slider-img');
+            if (imgEl) {
+                imgEl.style.opacity = 0;
+                setTimeout(() => {
+                    imgEl.src = galleryImages[currentExpModalPhotoIndex];
+                    imgEl.style.opacity = 1;
+                }, 150);
+            }
+        };
+
+        // Navigation Slider Spécifique au Modal "Production Vidéo"
+        const productionVideos = ['7kVf939JGEU', '-GtLUT-sWVI']; // Ajoutez ici les IDs de vos autres vidéos YouTube
+        let currentExpModalVideoIndex = 0;
+        
+        window.changeExpModalVideo = (dir) => {
+            currentExpModalVideoIndex += dir;
+            if (currentExpModalVideoIndex < 0) currentExpModalVideoIndex = productionVideos.length - 1;
+            if (currentExpModalVideoIndex >= productionVideos.length) currentExpModalVideoIndex = 0;
+            
+            const iframeEl = document.getElementById('exp-modal-video-iframe');
+            if (iframeEl) {
+                iframeEl.style.opacity = 0;
+                setTimeout(() => {
+                    iframeEl.src = `https://www.youtube.com/embed/${productionVideos[currentExpModalVideoIndex]}?autoplay=1&mute=1&controls=1&rel=0`;
+                    iframeEl.style.opacity = 1;
+                }, 300);
+            }
+        };
 
     </script>
 </body>
