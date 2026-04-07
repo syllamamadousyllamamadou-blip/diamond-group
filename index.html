@@ -82,7 +82,13 @@
         <button id="close-image-modal" class="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white hover:rotate-90 transition-all duration-300 z-50 bg-white/10 p-3 rounded-full backdrop-blur-md">
             <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
         </button>
-        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-[0_0_80px_rgba(147,51,234,0.15)] transform scale-95 transition-transform duration-500" onclick="event.stopPropagation()">
+        <button id="lightbox-prev" onclick="changeLightboxImage(-1, event)" class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all duration-300 z-50 bg-white/10 hover:bg-purple-600 p-3 md:p-4 rounded-full backdrop-blur-md hidden">
+            <i data-lucide="chevron-left" class="w-6 h-6 md:w-8 md:h-8"></i>
+        </button>
+        <button id="lightbox-next" onclick="changeLightboxImage(1, event)" class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all duration-300 z-50 bg-white/10 hover:bg-purple-600 p-3 md:p-4 rounded-full backdrop-blur-md hidden">
+            <i data-lucide="chevron-right" class="w-6 h-6 md:w-8 md:h-8"></i>
+        </button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-[0_0_80px_rgba(147,51,234,0.15)] transform scale-95 transition-all duration-300" onclick="event.stopPropagation()">
     </div>
 
     <!-- =========================================
@@ -129,12 +135,12 @@
                     <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group Logo" class="relative z-10 h-10 md:h-12 object-contain">
                 </a>
 
-                <!-- Menu Desktop -->
+                <!-- Menu Desktop (Réorganisé pour suivre le flow de la page) -->
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="#a-propos" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">À propos</a>
                     <a href="#expertises" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Expertises</a>
                     <a href="#portfolio" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Portfolio</a>
                     <a href="#formation" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Académie</a>
+                    <a href="#a-propos" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">À propos</a>
                     <a href="#contact" class="text-sm font-medium text-zinc-400 hover:text-purple-400 transition-colors">Contact</a>
                 </div>
 
@@ -146,10 +152,10 @@
 
             <!-- Menu Mobile Dropdown -->
             <div id="mobile-menu" class="fixed inset-0 bg-[#050505] flex flex-col items-center justify-center space-y-8 transition-transform duration-500 ease-in-out -translate-y-full z-40">
-                <a href="#a-propos" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">À propos</a>
                 <a href="#expertises" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Expertises</a>
                 <a href="#portfolio" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Portfolio</a>
                 <a href="#formation" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Académie</a>
+                <a href="#a-propos" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">À propos</a>
                 <a href="#contact" class="mobile-link text-3xl font-medium text-white hover:text-purple-400">Nous contacter</a>
             </div>
         </nav>
@@ -190,18 +196,252 @@
                         <i data-lucide="play" class="w-4 h-4 fill-white"></i>
                         Voir le Showreel
                     </button>
-                    <a href="#a-propos" class="px-8 py-4 bg-transparent border border-white/10 text-white font-bold rounded-full hover:bg-white/5 transition-colors flex items-center justify-center">
-                        Découvrir l'agence
+                    <a href="#portfolio" class="px-8 py-4 bg-transparent border border-white/10 text-white font-bold rounded-full hover:bg-white/5 transition-colors flex items-center justify-center">
+                        Nos Réalisations
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Section À propos -->
-        <section id="a-propos" class="py-32 relative bg-[#050505] border-b border-white/5">
+        <!-- Section Expertises -->
+        <section id="expertises" class="py-32 relative">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="mb-20 text-center md:text-left">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">Nos Domaines<br/>d'Excellence.</h2>
+                    <p class="text-xl text-zinc-400 max-w-xl font-light mx-auto md:mx-0">Cliquez sur une de nos expertises pour découvrir les détails de nos offres.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    <!-- Expertise 1 (Vidéo) -->
+                    <div onclick="openExpertiseModal('production')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 md:col-span-2 bg-[#0a0a0a] shadow-lg">
+                        <img src="https://i.goopics.net/ugcykb.jpg" alt="Production" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors z-10"></div>
+                        <div class="relative z-20 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="flex justify-between items-start mb-12">
+                                <div class="w-14 h-14 rounded-full bg-purple-500/20 backdrop-blur-md flex items-center justify-center border border-white/10 transition-colors shadow-[0_0_15px_rgba(147,51,234,0.4)]">
+                                    <i data-lucide="video" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <div class="flex items-center gap-2 opacity-100 transition-opacity">
+                                    <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Voir les vidéos</span>
+                                    <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Production Vidéo</h3>
+                                <p class="text-zinc-100 font-light leading-relaxed max-w-md drop-shadow-md">Réalisation audiovisuelle complète. Spots publicitaires, Films corporate B2B, Interviews, Clips et Documentaires.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expertise 2 (Événementiel) -->
+                    <div onclick="openExpertiseModal('evenementiel')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <img src="https://i.goopics.net/skp5li.jpg" alt="Evenementiel" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors z-10"></div>
+                        <div class="relative z-20 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="flex justify-between items-start mb-12">
+                                <div class="w-14 h-14 rounded-full bg-purple-500/20 backdrop-blur-md flex items-center justify-center border border-white/10 transition-colors shadow-[0_0_15px_rgba(147,51,234,0.4)]">
+                                    <i data-lucide="play" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400 transition-colors"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Événementiel</h3>
+                                <p class="text-zinc-100 font-light leading-relaxed max-w-md drop-shadow-md">Captation vidéo et couverture photo pour conférences, concerts, galas et cérémonies.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expertise 3 (Photographie) -->
+                    <div onclick="openExpertiseModal('photo')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <img src="https://i.goopics.net/m9pkvy.jpg" alt="Photo" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors z-10"></div>
+                        <div class="relative z-20 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="flex justify-between items-start mb-12">
+                                <div class="w-14 h-14 rounded-full bg-purple-500/20 backdrop-blur-md flex items-center justify-center border border-white/10 transition-colors shadow-[0_0_15px_rgba(147,51,234,0.4)]">
+                                    <i data-lucide="camera" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <div class="flex items-center gap-2 opacity-100 transition-opacity">
+                                    <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Galerie</span>
+                                    <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Photographie</h3>
+                                <p class="text-zinc-100 font-light leading-relaxed max-w-md drop-shadow-md">Shooting professionnel. Packshot, Portraits corporate, Mode et Reportages sur site.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expertise 4 (Marketing) -->
+                    <div onclick="openExpertiseModal('marketing')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <img src="https://i.goopics.net/48ovqo.jpg" alt="Marketing" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors z-10"></div>
+                        <div class="relative z-20 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="flex justify-between items-start mb-12">
+                                <div class="w-14 h-14 rounded-full bg-purple-500/20 backdrop-blur-md flex items-center justify-center border border-white/10 transition-colors shadow-[0_0_15px_rgba(147,51,234,0.4)]">
+                                    <i data-lucide="monitor-smartphone" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400 transition-colors"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Marketing Digital</h3>
+                                <p class="text-zinc-100 font-light leading-relaxed max-w-md drop-shadow-md">Stratégie de contenu, gestion des réseaux sociaux (CM) et campagnes publicitaires (Ads).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expertise 5 (Publicité) -->
+                    <div onclick="openExpertiseModal('publicite')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
+                        <img src="https://i.goopics.net/sfjdq2.jpg" alt="Publicite" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors z-10"></div>
+                        <div class="relative z-20 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="flex justify-between items-start mb-12">
+                                <div class="w-14 h-14 rounded-full bg-purple-500/20 backdrop-blur-md flex items-center justify-center border border-white/10 transition-colors shadow-[0_0_15px_rgba(147,51,234,0.4)]">
+                                    <i data-lucide="megaphone" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400 transition-colors"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Publicité Globale</h3>
+                                <p class="text-zinc-100 font-light leading-relaxed max-w-md drop-shadow-md">Création de campagnes 360°, affichage urbain, supports imprimés et création de marque.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expertise 6 (Spéciale - Academy) -->
+                    <div id="formation" onclick="openExpertiseModal('academy')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-purple-500/30 md:col-span-3 bg-gradient-to-br from-purple-900/40 via-[#0a0a0a] to-black shadow-lg">
+                        <img src="https://i.goopics.net/t69ezr.jpg" alt="Academy" class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors z-10"></div>
+                        <div class="relative z-20 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="flex justify-between items-start mb-12">
+                                <div class="w-14 h-14 rounded-full bg-purple-500/30 backdrop-blur-md flex items-center justify-center border border-white/20 transition-colors shadow-[0_0_15px_rgba(147,51,234,0.4)]">
+                                    <i data-lucide="graduation-cap" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400 transition-colors"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Diamond Academy</h3>
+                                <p class="text-zinc-100 font-light leading-relaxed max-w-md drop-shadow-md">Formations pratiques intensives : Maîtrise du cadrage vidéo, montage professionnel, retouche photo avancée et marketing digital.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Portfolio (Bento Box Design - Plus Épuré) -->
+        <section id="portfolio" class="py-32 bg-[#0a0a0a] border-y border-white/5">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">Projets Récents.</h2>
+                    <p class="text-zinc-400 text-lg">Nos vidéos (lecture directe) et nos derniers shootings.</p>
+                </div>
+            </div>
+
+            <!-- Nouvelle structure en Bento Grid (3 colonnes, asymétrique) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-6 md:px-12 pb-10 auto-rows-[280px] lg:auto-rows-[300px]">
+                
+                <!-- Projet 1: Vidéo Youtube 1 (Showreel) - ÉLÉMENT STAR -->
+                <div onclick="playInlineVideo(this, 'youtube', 'HrS4nDFOhEI')" class="group relative lg:col-span-2 lg:row-span-2 rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer h-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 z-10 transition-opacity duration-500"></div>
+                    <img src="https://img.youtube.com/vi/HrS4nDFOhEI/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
+                        <div class="w-16 h-16 md:w-24 md:h-24 rounded-full bg-purple-600/90 backdrop-blur-md flex items-center justify-center shadow-[0_0_40px_rgba(147,51,234,0.6)] group-hover:scale-110 transition-transform animate-pulse">
+                            <i data-lucide="play" class="w-8 h-8 md:w-10 md:h-10 text-white ml-2 fill-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-8 md:p-12 z-30 transform translate-y-0 transition-transform duration-300">
+                        <p class="text-purple-400 text-sm md:text-base font-bold mb-3 tracking-widest uppercase drop-shadow-md">Production Vidéo</p>
+                        <h3 class="text-3xl md:text-5xl font-bold text-white drop-shadow-lg">Showreel Diamond Group</h3>
+                    </div>
+                </div>
+
+                <!-- Projet 2: Vidéo Youtube (Mariage) -->
+                <div onclick="playInlineVideo(this, 'youtube', 'hQHbqHSJuTc')" class="group relative rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer h-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 z-10 transition-opacity duration-500"></div>
+                    <img src="https://img.youtube.com/vi/hQHbqHSJuTc/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-600/80 backdrop-blur-md flex items-center justify-center border border-purple-500/50 shadow-[0_0_20px_rgba(147,51,234,0.4)] group-hover:bg-purple-500 transition-all">
+                            <i data-lucide="play" class="w-5 h-5 md:w-6 md:h-6 text-white ml-1 fill-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 z-30 transform translate-y-0 transition-transform duration-300">
+                        <p class="text-purple-400 text-xs font-bold mb-1 tracking-widest uppercase drop-shadow-md">Événementiel</p>
+                        <h3 class="text-xl font-bold text-white drop-shadow-md">Film de Mariage</h3>
+                    </div>
+                </div>
+
+                <!-- Projet 3: Vidéo Youtube 3 -->
+                <div onclick="playInlineVideo(this, 'youtube', 'w2smpCJsdu0')" class="group relative rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer h-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 z-10 transition-opacity duration-500"></div>
+                    <img src="https://img.youtube.com/vi/w2smpCJsdu0/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-600/80 backdrop-blur-md flex items-center justify-center border border-purple-500/50 shadow-[0_0_20px_rgba(147,51,234,0.4)] group-hover:bg-purple-500 transition-all">
+                            <i data-lucide="play" class="w-5 h-5 md:w-6 md:h-6 text-white ml-1 fill-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 z-30 transform translate-y-0 transition-transform duration-300">
+                        <p class="text-purple-400 text-xs font-bold mb-1 tracking-widest uppercase drop-shadow-md">Spot Publicitaire</p>
+                        <h3 class="text-xl font-bold text-white drop-shadow-md">Campagne Vidéo</h3>
+                    </div>
+                </div>
+                
+                <!-- Projet 4: Vidéo Youtube 4 -->
+                <div onclick="playInlineVideo(this, 'youtube', 'frXO7H3iBPQ')" class="group relative rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer h-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 z-10 transition-opacity duration-500"></div>
+                    <img src="https://img.youtube.com/vi/frXO7H3iBPQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-600/80 backdrop-blur-md flex items-center justify-center border border-purple-500/50 shadow-[0_0_20px_rgba(147,51,234,0.4)] group-hover:bg-purple-500 transition-all">
+                            <i data-lucide="play" class="w-5 h-5 md:w-6 md:h-6 text-white ml-1 fill-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 z-30 transform translate-y-0 transition-transform duration-300">
+                        <p class="text-purple-400 text-xs font-bold mb-1 tracking-widest uppercase drop-shadow-md">Film Corporate</p>
+                        <h3 class="text-xl font-bold text-white drop-shadow-md">Institutionnel</h3>
+                    </div>
+                </div>
+
+                <!-- Projet 5: Vidéo Google Drive -->
+                <div onclick="playInlineVideo(this, 'gdrive', '1XOJ0goNGI-ixaQryz3fzeLY7LrudM_NC')" class="group relative rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer h-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 z-10 transition-opacity duration-500"></div>
+                    <img src="https://i.goopics.net/skp5li.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 grayscale hover:grayscale-0" alt="Miniature Drive">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600/80 backdrop-blur-md flex items-center justify-center border border-blue-500/50 shadow-[0_0_20px_rgba(37,99,235,0.4)] group-hover:bg-blue-500 transition-all">
+                            <i data-lucide="play" class="w-5 h-5 md:w-6 md:h-6 text-white ml-1 fill-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 z-30 transform translate-y-0 transition-transform duration-300">
+                        <p class="text-blue-400 text-xs font-bold mb-1 tracking-widest uppercase drop-shadow-md">Vidéo Exclusif</p>
+                        <h3 class="text-xl font-bold text-white drop-shadow-md">Making-Of & Coulisses</h3>
+                    </div>
+                </div>
+
+                <!-- Projet 6: Slider Galerie Photo -->
+                <div class="group relative rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg h-full">
+                    <div id="gallery-container" class="w-full h-full relative"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-100 z-10 pointer-events-none"></div>
+                    <button onclick="prevPhoto(event)" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-black/40 backdrop-blur-md hover:bg-purple-600 rounded-full text-white transition-all opacity-100 md:opacity-0 group-hover:opacity-100 shadow-lg border border-white/10 hover:border-transparent">
+                        <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    </button>
+                    <button onclick="nextPhoto(event)" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-black/40 backdrop-blur-md hover:bg-purple-600 rounded-full text-white transition-all opacity-100 md:opacity-0 group-hover:opacity-100 shadow-lg border border-white/10 hover:border-transparent">
+                        <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    </button>
+                    <div id="gallery-dots" class="absolute top-6 left-1/2 -translate-x-1/2 z-30 flex gap-2"></div>
+                    <div class="absolute bottom-0 left-0 p-6 z-30 pointer-events-none">
+                        <p class="text-purple-400 text-xs font-bold mb-1 tracking-widest uppercase flex items-center gap-2 drop-shadow-md">
+                            <i data-lucide="image" class="w-3 h-3"></i> Galerie <span id="gallery-counter">(1/10)</span>
+                        </p>
+                        <h3 class="text-xl font-bold text-white drop-shadow-md">Shooting Studio</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section À propos (Déplacée juste au dessus du Footer) -->
+        <section id="a-propos" class="py-32 relative bg-[#050505] border-t border-white/5">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                    <!-- Images Illustration Agence (Sobres et design) -->
+                    <!-- Images Illustration Agence -->
                     <div class="lg:w-1/2 relative group w-full flex gap-4">
                         <div class="absolute inset-0 bg-purple-600/20 blur-3xl rounded-full transform -translate-x-4 -translate-y-4"></div>
                         <img src="https://i.postimg.cc/6qncx6mR/449696890-7859695437457778-4199508047924057276-n.jpg" alt="Fondateurs Diamond Group" class="relative z-10 w-2/3 rounded-[2rem] border border-white/10 shadow-2xl object-cover aspect-[4/5] group-hover:scale-[1.02] transition-transform duration-700">
@@ -212,7 +452,7 @@
                         </div>
                     </div>
                     
-                    <!-- Contenu Texte (Focus Expertise) -->
+                    <!-- Contenu Texte -->
                     <div class="lg:w-1/2">
                         <h2 class="text-xs font-bold text-purple-500 uppercase tracking-widest mb-4 flex items-center gap-2">
                             <span class="w-8 h-[1px] bg-purple-500"></span> À propos
@@ -229,243 +469,11 @@
             </div>
         </section>
 
-        <!-- Section Expertises (AVEC IMAGES DE FOND PERMANENTES) -->
-        <section id="expertises" class="py-32 relative">
-            <div class="max-w-7xl mx-auto px-6 md:px-12">
-                <div class="mb-20 text-center md:text-left">
-                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">Nos Domaines<br/>d'Excellence.</h2>
-                    <p class="text-xl text-zinc-400 max-w-xl font-light mx-auto md:mx-0">Cliquez sur une de nos expertises pour découvrir les détails de nos offres.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                    <!-- Expertise 1 (Vidéo) -->
-                    <div onclick="openExpertiseModal('production')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 md:col-span-2 bg-[#0a0a0a] shadow-lg">
-                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
-                        <img src="https://i.goopics.net/ugcykb.jpg" alt="Production" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="flex justify-between items-start mb-12">
-                                <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
-                                    <i data-lucide="video" class="w-6 h-6 text-purple-500"></i>
-                                </div>
-                                <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Voir les vidéos</span>
-                                    <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Production Vidéo</h3>
-                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Réalisation audiovisuelle complète. Spots publicitaires, Films corporate B2B, Interviews, Clips et Documentaires.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expertise 2 (Événementiel) -->
-                    <div onclick="openExpertiseModal('evenementiel')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
-                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
-                        <img src="https://i.goopics.net/skp5li.jpg" alt="Evenementiel" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="flex justify-between items-start mb-12">
-                                <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
-                                    <i data-lucide="play" class="w-6 h-6 text-purple-500"></i>
-                                </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-400 group-hover:text-purple-400 transition-colors"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Événementiel</h3>
-                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Captation vidéo et couverture photo pour conférences, concerts, galas et cérémonies.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expertise 3 (Photographie) -->
-                    <div onclick="openExpertiseModal('photo')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
-                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
-                        <img src="https://i.goopics.net/m9pkvy.jpg" alt="Photo" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="flex justify-between items-start mb-12">
-                                <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
-                                    <i data-lucide="camera" class="w-6 h-6 text-purple-500"></i>
-                                </div>
-                                <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Galerie</span>
-                                    <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Photographie</h3>
-                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Shooting professionnel. Packshot, Portraits corporate, Mode et Reportages sur site.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expertise 4 (Marketing) -->
-                    <div onclick="openExpertiseModal('marketing')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
-                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
-                        <img src="https://i.goopics.net/48ovqo.jpg" alt="Marketing" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="flex justify-between items-start mb-12">
-                                <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
-                                    <i data-lucide="monitor-smartphone" class="w-6 h-6 text-purple-500"></i>
-                                </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-400 group-hover:text-purple-400 transition-colors"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Marketing Digital</h3>
-                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Stratégie de contenu, gestion des réseaux sociaux (CM) et campagnes publicitaires (Ads).</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expertise 5 (Publicité) -->
-                    <div onclick="openExpertiseModal('publicite')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-white/5 bg-[#0a0a0a] shadow-lg">
-                        <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-0"></div>
-                        <img src="https://i.goopics.net/sfjdq2.jpg" alt="Publicite" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="flex justify-between items-start mb-12">
-                                <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:bg-purple-500/10 transition-colors">
-                                    <i data-lucide="megaphone" class="w-6 h-6 text-purple-500"></i>
-                                </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-400 group-hover:text-purple-400 transition-colors"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Publicité Globale</h3>
-                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Création de campagnes 360°, affichage urbain, supports imprimés et création de marque.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expertise 6 (Spéciale - Academy) -->
-                    <div id="formation" onclick="openExpertiseModal('academy')" class="cursor-pointer group relative overflow-hidden rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] border border-purple-500/30 md:col-span-3 bg-gradient-to-br from-purple-900/40 via-[#0a0a0a] to-black shadow-lg">
-                        <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors z-0"></div>
-                        <img src="https://i.goopics.net/t69ezr.jpg" alt="Academy" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-50 group-hover:scale-105 transition-transform duration-700">
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="flex justify-between items-start mb-12">
-                                <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-purple-500/20 transition-colors">
-                                    <i data-lucide="graduation-cap" class="w-6 h-6 text-purple-400"></i>
-                                </div>
-                                <i data-lucide="arrow-up-right" class="w-6 h-6 text-purple-400 transition-colors"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Diamond Academy</h3>
-                                <p class="text-zinc-300 font-light leading-relaxed max-w-md">Formations pratiques intensives : Maîtrise du cadrage vidéo, montage professionnel, retouche photo avancée et marketing digital.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Portfolio -->
-        <section id="portfolio" class="py-32 bg-[#0a0a0a] border-y border-white/5">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
-                <div>
-                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">Projets Récents.</h2>
-                    <p class="text-zinc-400 text-lg">Nos vidéos interactives et nos derniers shootings en ligne.</p>
-                </div>
-            </div>
-
-            <div class="flex flex-col lg:grid lg:grid-cols-3 gap-6 px-6 md:px-12 pb-10">
-                <!-- Projet 1: Vidéo Youtube 1 (Showreel) -->
-                <div onclick="openVideoModal('HrS4nDFOhEI')" class="group relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 z-10 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    <img src="https://img.youtube.com/vi/HrS4nDFOhEI/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-purple-600/90 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.5)] group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 md:w-8 md:h-8 text-white ml-1 fill-white"></i>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8 z-30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <p class="text-purple-400 text-xs font-bold mb-2 tracking-widest uppercase">Production Vidéo</p>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">Showreel Diamond Group</h3>
-                    </div>
-                </div>
-
-                <!-- Projet 2: Vidéo Youtube (Mariage) -->
-                <div onclick="openVideoModal('hQHbqHSJuTc')" class="group relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 z-10 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    <img src="https://img.youtube.com/vi/hQHbqHSJuTc/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-purple-600/90 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.5)] group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 md:w-8 md:h-8 text-white ml-1 fill-white"></i>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8 z-30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <p class="text-purple-400 text-xs font-bold mb-2 tracking-widest uppercase">Événementiel</p>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">Film de Mariage</h3>
-                    </div>
-                </div>
-
-                <!-- Projet 3: Vidéo Youtube 3 -->
-                <div onclick="openVideoModal('w2smpCJsdu0')" class="group relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 z-10 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    <img src="https://img.youtube.com/vi/w2smpCJsdu0/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-purple-600/90 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.5)] group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 md:w-8 md:h-8 text-white ml-1 fill-white"></i>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8 z-30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <p class="text-purple-400 text-xs font-bold mb-2 tracking-widest uppercase">Spot Publicitaire</p>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">Campagne Vidéo</h3>
-                    </div>
-                </div>
-                
-                <!-- Projet 4: Vidéo Youtube 4 -->
-                <div onclick="openVideoModal('frXO7H3iBPQ')" class="group relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 z-10 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    <img src="https://img.youtube.com/vi/frXO7H3iBPQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-purple-600/90 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.5)] group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 md:w-8 md:h-8 text-white ml-1 fill-white"></i>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8 z-30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <p class="text-purple-400 text-xs font-bold mb-2 tracking-widest uppercase">Film Corporate</p>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">Réalisation Institutionnelle</h3>
-                    </div>
-                </div>
-
-                <!-- Projet 5: Vidéo Youtube 5 -->
-                <div onclick="openVideoModal('R1aqAlUn5RU')" class="group relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg cursor-pointer">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 z-10 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    <img src="https://img.youtube.com/vi/R1aqAlUn5RU/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Miniature">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-purple-600/90 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(147,51,234,0.5)] group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 md:w-8 md:h-8 text-white ml-1 fill-white"></i>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8 z-30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <p class="text-purple-400 text-xs font-bold mb-2 tracking-widest uppercase">Production</p>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">Montage Dynamique</h3>
-                    </div>
-                </div>
-
-                <!-- Projet 6: Slider Galerie Photo -->
-                <div class="group relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 bg-black w-full shadow-lg">
-                    <div id="gallery-container" class="w-full h-full relative"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-black/20 opacity-90 z-10 pointer-events-none"></div>
-                    <button onclick="prevPhoto(event)" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-black/40 backdrop-blur-md hover:bg-purple-600 rounded-full text-white transition-all opacity-0 group-hover:opacity-100 shadow-lg border border-white/10 hover:border-transparent">
-                        <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i>
-                    </button>
-                    <button onclick="nextPhoto(event)" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-black/40 backdrop-blur-md hover:bg-purple-600 rounded-full text-white transition-all opacity-0 group-hover:opacity-100 shadow-lg border border-white/10 hover:border-transparent">
-                        <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
-                    </button>
-                    <div id="gallery-dots" class="absolute top-6 left-1/2 -translate-x-1/2 z-30 flex gap-2"></div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8 z-30 pointer-events-none">
-                        <p class="text-purple-400 text-xs font-bold mb-2 tracking-widest uppercase flex items-center gap-2">
-                            <i data-lucide="image" class="w-4 h-4"></i> Photographie <span id="gallery-counter">(1/10)</span>
-                        </p>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">Shooting Studio</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Footer -->
-        <footer id="contact" class="bg-[#050505] pt-32 pb-12">
+        <footer id="contact" class="bg-[#050505] pt-12 pb-12">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 
-                <!-- Nouveau formulaire de contact simplifié -->
+                <!-- Formulaire de contact simplifié -->
                 <div class="mb-24 bg-[#0a0a0a] border border-white/5 rounded-[2rem] p-8 md:p-12 flex flex-col lg:flex-row justify-between items-center gap-10 shadow-xl">
                     <div class="lg:w-1/2 text-center lg:text-left">
                         <h2 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">Prêt à créer ?</h2>
@@ -487,10 +495,21 @@
                             <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group" class="relative h-12 md:h-16 object-contain">
                         </div>
                         <p class="text-zinc-400 font-light mb-8">L'excellence visuelle et stratégique au service de votre marque.</p>
+                        
+                        <!-- RÉSEAUX SOCIAUX INTÉGRÉS ICI -->
                         <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-purple-500 hover:bg-purple-600/10 transition-all"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-purple-500 hover:bg-purple-600/10 transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                            <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-purple-500 hover:bg-purple-600/10 transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                            <a href="https://www.youtube.com/@DiamondGroupProd" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 bg-white/10 flex items-center justify-center text-white hover:bg-purple-600 hover:border-purple-500 hover:scale-110 transition-all shadow-lg" aria-label="YouTube">
+                                <i data-lucide="youtube" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61588647308282" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 bg-white/10 flex items-center justify-center text-white hover:bg-purple-600 hover:border-purple-500 hover:scale-110 transition-all shadow-lg" aria-label="Facebook">
+                                <i data-lucide="facebook" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://www.instagram.com/diamondgroup.ci/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 bg-white/10 flex items-center justify-center text-white hover:bg-purple-600 hover:border-purple-500 hover:scale-110 transition-all shadow-lg" aria-label="Instagram">
+                                <i data-lucide="instagram" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/diamond-group-production-643830303?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/20 bg-white/10 flex items-center justify-center text-white hover:bg-purple-600 hover:border-purple-500 hover:scale-110 transition-all shadow-lg" aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-6 h-6"></i>
+                            </a>
                         </div>
                     </div>
                     <div>
@@ -499,7 +518,7 @@
                             <li><a href="#accueil" class="hover:text-purple-400 transition-colors">Accueil</a></li>
                             <li><a href="#expertises" class="hover:text-purple-400 transition-colors">Expertises</a></li>
                             <li><a href="#portfolio" class="hover:text-purple-400 transition-colors">Portfolio</a></li>
-                            <li><a href="#formation" class="hover:text-purple-400 transition-colors">Diamond Academy</a></li>
+                            <li><a href="#a-propos" class="hover:text-purple-400 transition-colors">À propos</a></li>
                         </ul>
                     </div>
                     <div class="lg:col-span-2">
@@ -555,7 +574,7 @@
             document.getElementById('main-content').classList.remove('opacity-0');
             document.getElementById('main-content').classList.add('opacity-100');
             document.getElementById('body').classList.remove('overflow-hidden');
-            document.getElementById('floating-btn').classList.remove('opacity-0'); // Afficher le bouton flottant
+            document.getElementById('floating-btn').classList.remove('opacity-0');
         }, 2200);
 
         // 2. Gestion de la Navbar au Scroll
@@ -631,7 +650,7 @@
                 img.src = src;
                 img.className = `absolute inset-0 w-full h-full object-cover cursor-pointer transition-opacity duration-500 ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
                 img.id = `gallery-img-${idx}`;
-                img.onclick = () => openImageModal(src);
+                img.onclick = () => openImageModal(src, galleryImages, idx);
                 container.appendChild(img);
 
                 const dot = document.createElement('div');
@@ -674,14 +693,64 @@
             videoContainer.classList.add('scale-100');
         };
 
-        window.openImageModal = (src) => {
+        // NOUVELLE FONCTION: Lecture de vidéo directement sur la page
+        window.playInlineVideo = (element, type, id) => {
+            let iframeSrc = '';
+            const currentOrigin = window.location.origin && window.location.origin !== "null" ? window.location.origin : "*";
+            
+            if (type === 'youtube') {
+                // Ajout de playsinline=1 (crucial pour mobile) et origin
+                iframeSrc = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1&origin=${currentOrigin}`;
+            } else if (type === 'gdrive') {
+                iframeSrc = `https://drive.google.com/file/d/${id}/preview`;
+            }
+            
+            // Remplace le contenu par l'iframe avec l'attribut "allow" étendu pour éviter le blocage navigateur
+            element.innerHTML = `<iframe class="absolute inset-0 w-full h-full z-50 rounded-[2rem] bg-black" src="${iframeSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+            element.onclick = null; // Désactive le clic après lancement
+            element.classList.remove('cursor-pointer');
+            element.classList.remove('group'); // Enlève les effets de survol
+        };
+
+        // GESTION LIGHTBOX GALERIE ET NAVIGATION
+        let currentLightboxArray = [];
+        let currentLightboxIndex = 0;
+
+        window.openImageModal = (src, groupArray = null, index = 0) => {
             const imageModal = document.getElementById('image-modal');
             const lightboxImg = document.getElementById('lightbox-img');
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+
             lightboxImg.src = src;
+            
+            if (groupArray && groupArray.length > 1) {
+                currentLightboxArray = groupArray;
+                currentLightboxIndex = index;
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            } else {
+                currentLightboxArray = [];
+                if(prevBtn) prevBtn.style.display = 'none';
+                if(nextBtn) nextBtn.style.display = 'none';
+            }
+
             imageModal.classList.remove('modal-hidden');
             imageModal.classList.add('modal-visible');
             lightboxImg.classList.remove('scale-95');
             lightboxImg.classList.add('scale-100');
+        };
+
+        window.changeLightboxImage = (dir, event) => {
+            if(event) event.stopPropagation();
+            if (currentLightboxArray.length === 0) return;
+            currentLightboxIndex = (currentLightboxIndex + dir + currentLightboxArray.length) % currentLightboxArray.length;
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.style.opacity = 0;
+            setTimeout(() => {
+                lightboxImg.src = currentLightboxArray[currentLightboxIndex];
+                lightboxImg.style.opacity = 1;
+            }, 200);
         };
 
         window.closeImageModal = () => {
@@ -702,7 +771,7 @@
             setTimeout(() => { iframe.src = ''; }, 500); 
         });
 
-        // 7. Gestion du Modal Expertises (Désormais avec Média Intégré)
+        // 7. Gestion du Modal Expertises
         const expertiseData = {
             'production': {
                 title: 'Production Vidéo',
@@ -716,7 +785,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                                 </button>
                                 <button onclick="changeExpModalVideo(1)" class="pointer-events-auto p-3 bg-black/60 rounded-full hover:bg-purple-600 text-white transition-all shadow-lg border border-white/20 hover:border-transparent hover:scale-110 flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18-6-6-6-6"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -735,7 +804,7 @@
                 icon: 'camera',
                 mediaHTML: `
                     <div class="w-full h-full relative group">
-                        <img id="exp-modal-slider-img" src="${galleryImages[0]}" class="w-full h-full object-cover transition-opacity duration-300 relative z-0 cursor-pointer" onclick="openImageModal(galleryImages[currentExpModalPhotoIndex])">
+                        <img id="exp-modal-slider-img" src="${galleryImages[0]}" class="w-full h-full object-cover transition-opacity duration-300 relative z-0 cursor-pointer" onclick="openImageModal(galleryImages[currentExpModalPhotoIndex], galleryImages, currentExpModalPhotoIndex)">
                         <div class="absolute inset-0 bg-black/20 z-10 pointer-events-none"></div>
                         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 z-20">
                             <button onclick="changeExpModalPhoto(-1)" class="p-3 bg-black/60 rounded-full hover:bg-purple-600 text-white transition-all shadow-lg border border-white/20 hover:border-transparent hover:scale-110 flex items-center justify-center">
@@ -779,7 +848,7 @@
 
             document.getElementById('exp-modal-title').innerText = data.title;
             document.getElementById('exp-modal-desc').innerHTML = data.desc;
-            expMediaContent.innerHTML = data.mediaHTML; // Injecte la vidéo, le slider, ou l'image
+            expMediaContent.innerHTML = data.mediaHTML;
             
             document.getElementById('exp-modal-icon').setAttribute('data-lucide', data.icon);
             lucide.createIcons();
@@ -795,13 +864,11 @@
             expModal.classList.add('modal-hidden');
             expContainer.classList.remove('scale-100');
             expContainer.classList.add('scale-95');
-            // Détruire la vidéo pour couper le son
             setTimeout(() => { expMediaContent.innerHTML = ''; }, 500);
         };
 
         document.getElementById('close-expertise-modal').addEventListener('click', closeExpertiseModal);
 
-        // Navigation Slider Spécifique au Modal "Photographie"
         let currentExpModalPhotoIndex = 0;
         window.changeExpModalPhoto = (dir) => {
             currentExpModalPhotoIndex += dir;
@@ -818,8 +885,7 @@
             }
         };
 
-        // Navigation Slider Spécifique au Modal "Production Vidéo"
-        const productionVideos = ['HrS4nDFOhEI', 'gxoJhCNFPk', 'w2smpCJsdu0', 'frXO7H3iBPQ', 'R1aqAlUn5RU']; // Nouveaux IDs YouTube
+        const productionVideos = ['HrS4nDFOhEI', 'gxoJhCNFPk', 'w2smpCJsdu0', 'frXO7H3iBPQ', 'R1aqAlUn5RU'];
         let currentExpModalVideoIndex = 0;
         
         window.changeExpModalVideo = (dir) => {
