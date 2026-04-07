@@ -51,7 +51,7 @@
             <div id="splash-line" class="absolute h-[1px] bg-gradient-to-r from-transparent via-white to-transparent transition-all duration-[1.2s] ease-out w-0 opacity-0"></div>
             <div id="splash-glow-1" class="absolute w-[280px] h-[160px] md:w-[450px] md:h-[220px] bg-white rounded-[50%] blur-[40px] md:blur-[50px] transition-all duration-1000 delay-100 ease-out scale-0 opacity-0"></div>
             <div id="splash-glow-2" class="absolute w-[400px] h-[250px] md:w-[600px] md:h-[400px] bg-purple-600/40 rounded-[50%] blur-[80px] mix-blend-screen transition-all duration-1000 delay-150 scale-50 opacity-0"></div>
-            <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group Loading" class="relative z-10 h-20 md:h-28 object-contain drop-shadow-2xl">
+            <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group Loading" class="relative z-10 h-32 md:h-44 object-contain drop-shadow-2xl">
         </div>
     </div>
 
@@ -73,6 +73,16 @@
         <div class="w-full max-w-7xl aspect-video bg-black rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_0_80px_rgba(147,51,234,0.15)] relative transform scale-95 transition-transform duration-500" id="video-container">
             <iframe id="youtube-iframe" width="100%" height="100%" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="absolute inset-0"></iframe>
         </div>
+    </div>
+
+    <!-- =========================================
+         MODAL IMAGE (Plein écran)
+    ========================================= -->
+    <div id="image-modal" class="fixed inset-0 z-[250] bg-[#050505]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-10 transition-all duration-500 modal-hidden" onclick="closeImageModal()">
+        <button id="close-image-modal" class="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white hover:rotate-90 transition-all duration-300 z-50 bg-white/10 p-3 rounded-full backdrop-blur-md">
+            <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
+        </button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-[0_0_80px_rgba(147,51,234,0.15)] transform scale-95 transition-transform duration-500" onclick="event.stopPropagation()">
     </div>
 
     <!-- =========================================
@@ -115,8 +125,8 @@
         <!-- Navigation -->
         <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-6 md:py-8">
             <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-                <a href="#accueil" class="relative group z-50 flex items-center justify-center bg-white px-5 py-2 md:px-6 md:py-2.5 rounded-full shadow-lg hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] transition-all duration-300 hover:scale-105">
-                    <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group Logo" class="relative z-10 h-7 md:h-9 object-contain">
+                <a href="#accueil" class="relative group z-50 flex items-center justify-center bg-white px-6 py-2.5 md:px-8 md:py-3 rounded-full shadow-lg hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] transition-all duration-300 hover:scale-105">
+                    <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group Logo" class="relative z-10 h-10 md:h-12 object-contain">
                 </a>
 
                 <!-- Menu Desktop -->
@@ -394,8 +404,8 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-t border-white/5 pt-16">
                     <div class="lg:col-span-1">
-                        <div class="inline-block relative mb-8 bg-white px-6 py-4 rounded-2xl shadow-lg">
-                            <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group" class="relative h-8 md:h-10 object-contain">
+                        <div class="inline-block relative mb-8 bg-white px-8 py-6 rounded-3xl shadow-lg">
+                            <img src="https://i.goopics.net/gojxva.png" alt="Diamond Group" class="relative h-12 md:h-16 object-contain">
                         </div>
                         <p class="text-zinc-400 font-light mb-8">L'excellence visuelle et stratégique au service de votre marque.</p>
                         <div class="flex gap-4">
@@ -540,8 +550,9 @@
             galleryImages.forEach((src, idx) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.className = `absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
+                img.className = `absolute inset-0 w-full h-full object-cover cursor-pointer transition-opacity duration-500 ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
                 img.id = `gallery-img-${idx}`;
+                img.onclick = () => openImageModal(src);
                 container.appendChild(img);
 
                 const dot = document.createElement('div');
@@ -582,6 +593,26 @@
             videoModal.classList.add('modal-visible');
             videoContainer.classList.remove('scale-95');
             videoContainer.classList.add('scale-100');
+        };
+
+        window.openImageModal = (src) => {
+            const imageModal = document.getElementById('image-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            imageModal.classList.remove('modal-hidden');
+            imageModal.classList.add('modal-visible');
+            lightboxImg.classList.remove('scale-95');
+            lightboxImg.classList.add('scale-100');
+        };
+
+        window.closeImageModal = () => {
+            const imageModal = document.getElementById('image-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            imageModal.classList.remove('modal-visible');
+            imageModal.classList.add('modal-hidden');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            setTimeout(() => { lightboxImg.src = ''; }, 500);
         };
 
         document.getElementById('close-modal').addEventListener('click', () => {
@@ -625,7 +656,7 @@
                 icon: 'camera',
                 mediaHTML: `
                     <div class="w-full h-full relative group">
-                        <img id="exp-modal-slider-img" src="${galleryImages[0]}" class="w-full h-full object-cover transition-opacity duration-300 relative z-0">
+                        <img id="exp-modal-slider-img" src="${galleryImages[0]}" class="w-full h-full object-cover transition-opacity duration-300 relative z-0 cursor-pointer" onclick="openImageModal(galleryImages[currentExpModalPhotoIndex])">
                         <div class="absolute inset-0 bg-black/20 z-10 pointer-events-none"></div>
                         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 z-20">
                             <button onclick="changeExpModalPhoto(-1)" class="p-3 bg-black/60 rounded-full hover:bg-purple-600 text-white transition-all shadow-lg border border-white/20 hover:border-transparent hover:scale-110 flex items-center justify-center">
